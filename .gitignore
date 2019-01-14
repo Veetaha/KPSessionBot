@@ -178,3 +178,4 @@ build/
 bin/
 data/
 server-build/
+dist/

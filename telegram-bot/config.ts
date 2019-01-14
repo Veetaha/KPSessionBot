@@ -1,1 +1,1 @@
-export const BACKEND_URL = null;
+export const BackendUrl = null;
