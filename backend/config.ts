@@ -16,7 +16,7 @@ function tryReadEnv(variableId: string) {
     if (!(variableId in process.env)) {
         throw new Error(`failed to read '${variableId}' environment variable`);
     }
-    return process.env[variableId] as string;
+    return process.env[variableId]!;
 }
 
 function pathFromRoot(dest: string) {
