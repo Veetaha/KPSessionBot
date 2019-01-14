@@ -1,0 +1,40 @@
+{
+    "name": "kp-session-bot",
+    "version": "0.0.1",
+    "author": "Vitaliy Kryvenko",
+    "license": "MIT",
+    "private": true,
+    "description": "Kp session telegram bot",
+    "main": "build/index.js",
+    "types": "build/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Veetaha/KPSessionBot.git"
+    },
+    "scripts": {
+        "test": "tsc && mocha build/test/tests.js",
+        "docs": "./node_modules/.bin/typedoc --options typedoc.json index.ts"
+    },
+    "dependencies": {
+        "@types/express": "latest",
+        "@types/node": "latest",
+        "http-status-codes": "latest",
+        "graphql-request": "latest",
+        "node-telegram-bot-api": "latest",
+        "node-fetch": "latest",
+        "vee-type-safe": "2.6.7"
+    },
+    "devDependencies": {
+        "@types/chai": "latest",
+        "@types/mocha": "latest",
+        "@types/node-telegram-bot-api": "latest",
+        "@types/node": "latest",
+        "@types/node-fetch": "latest",
+        "@ef-carbon/tspm": "^2.2.5",
+        "chai": "latest",
+        "mocha": "latest",
+        "tslint": "^5.11.0",
+        "typedoc": "^0.13.0",
+        "typescript": "3.2.2"
+    }
+}
