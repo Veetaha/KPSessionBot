@@ -14,7 +14,7 @@ export interface CrudPlugin<TDoc extends Mongoose.Document> {
     tryFindOne(this: Mongoose.Model<TDoc>, queryObj: Vts.BasicObject): Promise<TDoc>;
 }
 
-export function plugCrud<TDoc extends Mongoose.Document>(schema: Mongoose.Schema) {
+export function plugin<TDoc extends Mongoose.Document>(schema: Mongoose.Schema) {
     const pluginStatics: CrudPlugin<TDoc> = {
         async tryDeleteById(id: ObjectId) {
             const doc = await this.findById(id);

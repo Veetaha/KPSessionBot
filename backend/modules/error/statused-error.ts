@@ -1,7 +1,5 @@
 export class StatusedError extends Error {
-    status: number;
-    constructor(message: string, status: number){
+    constructor(message: string, public status: number){
         super(message);
-        this.status = status;
     }
 }
