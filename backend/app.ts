@@ -1,24 +1,34 @@
-import * as Mongoose     from 'mongoose';
+import * as Mongoose   from 'mongoose';
+import * as Config     from '@app/config';
+import * as HttpCodes  from 'http-status-codes';
+import * as BodyParser from 'body-parser';
 import Express from 'express';
-import logger  from 'morgan';
-import * as Config       from '@app/config';
-import * as HttpCodes    from 'http-status-codes';
+import Morgan  from 'morgan';
+import { TgBot } from '@app/telegram-bot';
+import { Log }   from '@modules/debug';
 
 const app = Express()
-    .use(logger('dev'))
-    .use(Express.static(Config.FrontendDistDir));
+    .use(Morgan('dev'))
+    .use(BodyParser.json())
+    .use(Express.static(Config.FrontendDistDir))
+    .post(Config.TgBotWebhookEndpoint, 
+        (req, res) => {
+            // @TODO: vulnerability to incompatible body json type
+            TgBot.processUpdate(req.body);
+            res.sendStatus(200);
+        });
 
 /*
 apolloServer.applyMiddleware({
     app,
-    path: '/api/v1/gql'
+    path: '/api/v1/graphql'
 });
 */
 
 // Let frontend handle all get requests, which are not targeted to API
 app .get('*', (_req, res, next) => res.sendFile(Config.FrontendIndexPath, next))
     .use(((err, _req, res, _next) => { // global error handler
-        console.error(err);
+        Log.error(err);
         res.status(err.status || HttpCodes.INTERNAL_SERVER_ERROR)
            .json({ error: String(err) });
     }) as Express.ErrorRequestHandler);
@@ -31,10 +41,10 @@ Mongoose.connect(Config.DatabaseUrl, {
     })
     .then(() => app.listen(
         Config.Port,
-        () => console.log(`🚀  Server is listening on port ${Config.Port}`)
+        () => Log.info(`🚀  Server is listening on port ${Config.Port}`)
     ))
     .catch(err => {
-        console.error(err);
+        Log.error(err);
         process.exit(1);
     });
     
