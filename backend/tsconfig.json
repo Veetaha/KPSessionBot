@@ -2,7 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-        "config":          [ "./config"       ],
         "@declarations/*": [ "declarations/*" ],
         "@modules/*":      [ "modules/*"      ],
         "@routes/*":       [ "routes/*"       ],
@@ -13,13 +12,16 @@
     /* Basic Options */
     "outDir": "build",
     "target": "esnext",
+    "lib": ["esnext"],
     "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "typeRoots": [
-      "node_modules/@types", "declarations"
+        "node_modules/@types", "ambient-declarations"
     ],
-    "sourceMap":      true,
-    "declaration":    true, /* Generates corresponding '.d.ts' file. */
-    "declarationMap": true, /* Generates a sourcemap for each corresponding '.d.ts' file. */
+    "sourceMap":      false, /* Disable source map as import path mapper breaks it. */
+    "declaration":    false, /* Generates corresponding '.d.ts' file. */
+    "declarationMap": false, /* Generates a sourcemap for each corresponding '.d.ts' file. */
     "experimentalDecorators":     true,
     "strict":                     true,
     "noUnusedLocals":             true,
@@ -27,9 +29,7 @@
     "noImplicitAny":              true,
     "noImplicitThis":             true,
     "noImplicitReturns":          true,
-    "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
-    /* Module Resolution Options */
-    "moduleResolution": "node"
+    "noFallthroughCasesInSwitch": true,
   },
   "files": ["app.ts"],
   "include": [

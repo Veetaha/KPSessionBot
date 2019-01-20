@@ -1,12 +1,12 @@
 import * as Mongoose     from 'mongoose';
-import * as Express      from 'express';
-import * as logger       from 'morgan';
+import Express from 'express';
+import logger  from 'morgan';
 import * as Config       from '@app/config';
 import * as HttpCodes    from 'http-status-codes';
 
 const app = Express()
     .use(logger('dev'))
-    .use(Express.static(Config.FrontendDistDir))
+    .use(Express.static(Config.FrontendDistDir));
 
 /*
 apolloServer.applyMiddleware({
