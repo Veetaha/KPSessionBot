@@ -4,7 +4,8 @@ export namespace Log {
     }
 
     export function info(message: unknown) {
-        console.log(`${currentTime()}| Info: ${message}`);
+        process.stdout.write(`${currentTime()}| Info: `);
+        console.dir(message);
     }
     export function error(message: unknown) {
         console.error(`${currentTime()}| Error: ${message}`);

@@ -3,7 +3,7 @@ import * as AplErr from '@modules/error/apollo';
 import * as Vts from 'vee-type-safe';
 import { ObjectId } from '@modules/interfaces';
 
-export interface CrudPlugin<TDoc extends Mongoose.Document> {
+export interface CrudPluginStatics<TDoc extends Mongoose.Document> {
     tryDeleteById(this: Mongoose.Model<TDoc>, id: ObjectId): Promise<TDoc>;
     tryUpdateById(
         this:  Mongoose.Model<TDoc>,
@@ -14,8 +14,8 @@ export interface CrudPlugin<TDoc extends Mongoose.Document> {
     tryFindOne(this: Mongoose.Model<TDoc>, queryObj: Vts.BasicObject): Promise<TDoc>;
 }
 
-export function plugin<TDoc extends Mongoose.Document>(schema: Mongoose.Schema) {
-    const pluginStatics: CrudPlugin<TDoc> = {
+export function CrudPlugin<TDoc extends Mongoose.Document>(schema: Mongoose.Schema) {
+    const pluginStatics: CrudPluginStatics<TDoc> = {
         async tryDeleteById(id: ObjectId) {
             const doc = await this.findById(id);
             if (!doc) {

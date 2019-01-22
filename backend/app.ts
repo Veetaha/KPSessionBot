@@ -4,7 +4,7 @@ import * as HttpCodes  from 'http-status-codes';
 import * as BodyParser from 'body-parser';
 import Express from 'express';
 import Morgan  from 'morgan';
-import { TgBot } from '@app/telegram-bot';
+import { TgBot } from '@routes/telegram-bot';
 import { Log }   from '@modules/debug';
 
 const app = Express()

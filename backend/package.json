@@ -13,7 +13,8 @@
     },
     "scripts": {
         "build": "tsc && ./node_modules/.bin/ef-tspm",
-        "build-start": "npm run build && npm start"
+        "build-start": "npm run build && npm start",
+        "start": "node build/app.js"
     },
     "dependencies": {
         "@types/node-telegram-bot-api": "^0.30.4",
@@ -28,6 +29,7 @@
         "http-status-codes": "latest",
         "jsonwebtoken": "^8.4.0",
         "lodash": "4.17.11",
+        "mathjs": "^5.4.1",
         "md5": "^2.2.1",
         "mongodb": "3.1.8",
         "mongoose": "latest",
@@ -46,6 +48,7 @@
         "@types/graphql": "^14.0.5",
         "@types/jsonwebtoken": "^8.3.0",
         "@types/lodash": "^4.14.118",
+        "@types/mathjs": "^4.4.5",
         "@types/md5": "^2.1.33",
         "@types/mocha": "latest",
         "@types/mongoose": "5.3.7",
