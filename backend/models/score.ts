@@ -1,11 +1,12 @@
 import * as Mongoose  from 'mongoose';
+import { Maybe } from '@modules/interfaces';
 
 export interface ScoreData {
     subject:           string;  // AcademicSubject.name
     practices:         number;
-    exam?:             number;
-    credit?:           number;
-    last_credit_date?: Date;    // date when user attempted to /passCredit last time
+    exam?:             Maybe<number>;
+    credit?:           Maybe<number>;
+    last_credit_date?: Maybe<Date>; // date when user attempted to /passCredit last time
 }
 
 export const Schema = new Mongoose.Schema({

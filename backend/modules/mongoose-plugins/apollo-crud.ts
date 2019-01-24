@@ -6,12 +6,12 @@ import { ObjectId } from '@modules/interfaces';
 export interface CrudPluginStatics<TDoc extends Mongoose.Document> {
     tryDeleteById(this: Mongoose.Model<TDoc>, id: ObjectId): Promise<TDoc>;
     tryUpdateById(
-        this:  Mongoose.Model<TDoc>,
+        this:   Mongoose.Model<TDoc>,
         id:     ObjectId,
         update: Vts.BasicObject
     ): Promise<TDoc>;
     tryFindById(this: Mongoose.Model<TDoc>, id: ObjectId): Promise<TDoc>;
-    tryFindOne(this: Mongoose.Model<TDoc>, queryObj: Vts.BasicObject): Promise<TDoc>;
+    tryFindOne(this:  Mongoose.Model<TDoc>, queryObj: Vts.BasicObject): Promise<TDoc>;
 }
 
 export function CrudPlugin<TDoc extends Mongoose.Document>(schema: Mongoose.Schema) {

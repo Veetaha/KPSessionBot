@@ -4,6 +4,7 @@ import * as _         from 'lodash';
 
 import { CrudPlugin, CrudPluginStatics } from '@modules/mongoose-plugins/apollo-crud';
 import { Score, Schema as ScoreSchema  } from '@models/score';
+import { Maybe } from '@modules/interfaces';
 
 export interface StudentData {
     tg_name:   string;   // telegram nickname (@user) (for frontend)
@@ -14,8 +15,10 @@ export interface StudentData {
                                   // array of marks and
                                   // subjects composed into Score objects
                                   
-    last_practice_date?: Date;     // date when student used /start command last time
-    init_date:           Date;     // date when this student was registered (for frontend) 
+    // date when student used /start command last time
+    last_practice_date?: Maybe<Date>; 
+    // date when this student was registered (for frontend) 
+    init_date:           Date;        
 }
 
 export const Schema = new Mongoose.Schema({

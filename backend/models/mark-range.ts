@@ -1,5 +1,5 @@
 import * as Mongoose from 'mongoose';
-import * as MathJs from 'mathjs';
+import * as MathJS from 'mathjs';
 
 export interface MarkRangeData {
     min: number;
@@ -18,10 +18,10 @@ const Methods: MarkRangeMethods = {
      */
     random() {
         return this.min > 0                      ?
-            MathJs.randomInt(this.min, this.max) :
+            MathJS.randomInt(this.min, this.max) :
             Math.random() >= 1/2                 ?
-            MathJs.randomInt(1, this.max)        :
-            MathJs.randomInt(this.min, 0);
+            MathJS.randomInt(1, this.max)        :
+            MathJS.randomInt(this.min, 0);
     }
 };
 
