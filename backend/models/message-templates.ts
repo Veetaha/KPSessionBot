@@ -1,5 +1,7 @@
 import * as Mongoose  from 'mongoose';
 import * as MathJS    from 'mathjs';
+import escapeStringRegexp from 'escape-string-regexp';
+import * as _ from 'lodash';
 
 /**
  * This model is meant to be a subdocument.
@@ -19,9 +21,16 @@ export const Schema = new Mongoose.Schema({
     exam:     { type: [String], required: true },
 });
 
+
 const Methods: MessageTemplatesMethods = {
     render({ data, type }) {
-        const template = this[type][MathJS.randomInt(0, this[type].length)];
+        return this[type][MathJS.randomInt(0, this[type].length)]
+            .replace(
+                new RegExp(escapeStringRegexp(
+                    `\\\${(${_.keys(data).join('|')})}`
+                )), 
+                (_fullMatch, key) => data[key as keyof MTRenderOptionsData]
+            );
     }
 };
 
@@ -45,7 +54,10 @@ export interface MessageTemplatesMethods {
      * @param options an object that contains the info about the type of template
      *  to render and all the needed data about the event
      */
-    render(this: MessageTemplates, options: MTRenderOptions): string;
+    render(
+        this:    Readonly<MessageTemplates>, 
+        options: Readonly<MTRenderOptions>
+    ): string;
 }
 
 export interface MessageTemplates extends 
