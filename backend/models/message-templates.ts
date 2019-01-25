@@ -27,7 +27,8 @@ const Methods: MessageTemplatesMethods = {
         return this[type][MathJS.randomInt(0, this[type].length)]
             .replace(
                 new RegExp(
-                    `\\\${(${_.keys(data).map(escapeStringRegexp).join('|')})}`
+                    `\\\${(${_.keys(data).map(escapeStringRegexp).join('|')})}`,
+                    'g'
                 ), 
                 (_fullMatch, key) => data[key as keyof MTRenderOptionsData]
             );
