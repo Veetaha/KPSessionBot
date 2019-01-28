@@ -1,5 +1,5 @@
 import * as Mongoose  from 'mongoose';
-import * as MathJS    from 'mathjs';
+import * as Utils     from '@modules/utils';
 import escapeStringRegexp from 'escape-string-regexp';
 import * as _ from 'lodash';
 
@@ -24,7 +24,7 @@ export const Schema = new Mongoose.Schema({
 
 const Methods: MessageTemplatesMethods = {
     render({ data, type }) {
-        return this[type][MathJS.randomInt(0, this[type].length)]
+        return Utils.pickRandom(this[type])
             .replace(
                 new RegExp(
                     `\\\${(${_.keys(data).map(escapeStringRegexp).join('|')})}`,
