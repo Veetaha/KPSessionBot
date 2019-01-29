@@ -1,21 +1,16 @@
 import * as Mongoose from 'mongoose';
 import * as MathJS from 'mathjs';
+import { 
+    MarkRangeMethods 
+} from        '@models/declarations/mark-range';
+export * from '@models/declarations/mark-range';
 
-export interface MarkRangeData {
-    min: number;
-    max: number;
-}
-
-// beware that the range is [min, max) excluding 0
 export const Schema = new Mongoose.Schema({
     min: { type: Number, required: true },
     max: { type: Number, required: true },
 });
 
 const Methods: MarkRangeMethods = {
-    /**
-     * Returns random number in range [this.min, this.max) excluding 0
-     */
     random() {
         return this.min > 0                      ?
             MathJS.randomInt(this.min, this.max) :
@@ -26,10 +21,3 @@ const Methods: MarkRangeMethods = {
 };
 
 Schema.methods = Methods;
-
-export interface MarkRangeMethods {
-    random(this: MarkRange): number;
-}
-
-export interface MarkRange extends 
-Mongoose.Document, MarkRangeData, MarkRangeMethods {}
