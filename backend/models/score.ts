@@ -1,13 +1,8 @@
 import * as Mongoose  from 'mongoose';
-import { Maybe } from '@modules/interfaces';
-
-export interface ScoreData {
-    subject:           string;  // AcademicSubject.name
-    practices:         number;
-    exam?:             Maybe<number>;
-    credit?:           Maybe<number>;
-    last_credit_date?: Maybe<Date>; // date when user attempted to /passCredit last time
-}
+import {
+    ScoreMethods
+} from        '@models/declarations/score';
+export * from '@models/declarations/score';
 
 export const Schema = new Mongoose.Schema({
     subject:            { type: String,        required: true  },
@@ -21,9 +16,3 @@ const Methods: ScoreMethods = {
 };
 
 Schema.methods = Methods;
-
-export interface ScoreMethods {
-}
-
-export interface Score extends 
-Mongoose.Document, ScoreData, ScoreMethods {}
