@@ -1,32 +1,40 @@
-import * as HttpCodes from 'http-status-codes';
-import * as Vts from 'vee-type-safe';
-import { StatusedError } from '@modules/error/statused-error';
+import * as Apollo from 'apollo-server-express';
 
-export class BadRequestError extends StatusedError {
-    constructor(message = 'bad request') {
-        super(message, HttpCodes.BAD_REQUEST);
-    }
-}
-export class NotFoundError extends StatusedError {
-    constructor(message = 'nothing was found') {
-        super(message, HttpCodes.NOT_FOUND);
-    }
-}
-export class UnAuthorizedError extends StatusedError {
-    constructor(message = 'authorization needed') {
-        super(message, HttpCodes.UNAUTHORIZED);
-    }
-}
-export class ForbiddenError extends StatusedError {
-    constructor(message = 'insufficient access level') {
-        super(message, HttpCodes.FORBIDDEN);
-    }
-}
-export class InvalidJwtError extends StatusedError {
-    constructor(mismatch: Vts.MismatchInfo) {
-        super(
-            `invalid authentication token (${mismatch.toErrorString()}) `,
-            HttpCodes.UNAUTHORIZED
-        );
-    }
+/*
+    UserNotEnrolledError     = 'UserNotEnrolledError',
+    AlreadyEnrolledError     = 'AlreadyEnrolledError',
+    AlreadyPracticedError    = 'AlreadyPracticedError',
+    WrongTimeForCreditErorr  = 'WrongTimeForCreditErorr',
+    WrongTimeForExamError    = 'WrongTimeForExamError',
+    EmptyRating              = 'EmptyRating',
+*/
+
+export const NoScheduleForSundayError = makeErrorClass(
+    'no schedule exists for Sunday'
+);
+export const NoScheduleIsSetError = makeErrorClass(
+    'no schedule is set for this week'
+);
+
+export const NotEnoughSubjectsForScheduleError = makeErrorClass(
+    'there are not enough subjects ' +
+    'registered in the database '    +
+    'to make a week schedule'
+);
+
+
+
+/**
+ * Error class factory, creates an error class that instantiates an error
+ * with the given message by default.
+ * 
+ * @param defaultErrorMessage Message that is stored in `Error.message` property
+ *                            by default. 
+ */
+export function makeErrorClass(defaultErrorMessage: string) {
+    return class extends Apollo.ValidationError {
+        constructor(errorMessage = defaultErrorMessage) {
+            super(errorMessage);
+        }
+    };
 }
