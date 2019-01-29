@@ -1,6 +1,5 @@
 import * as Mongoose  from 'mongoose';
 import Paginate       from 'mongoose-paginate';
-import * as _         from 'lodash';
 import * as Utils     from '@modules/utils';
 import { CrudPlugin } from '@modules/mongoose-plugins/apollo-crud';
 import { assert     } from '@modules/debug';
