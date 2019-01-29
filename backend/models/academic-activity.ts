@@ -2,6 +2,7 @@ import * as Mongoose  from 'mongoose';
 import * as Utils     from '@modules/utils';
 import escapeStringRegexp from 'escape-string-regexp';
 import * as _ from 'lodash';
+import { Schema as MarkRangeSchema } from '@models/mark-range';
 
 import { 
     AcademicActivityMethods 
@@ -9,9 +10,14 @@ import {
 export * from '@models/declarations/academic-activity';
 
 export const Schema = new Mongoose.Schema({
-    practice: { type: [String], required: true },
-    credit:   { type: [String], required: true },
-    exam:     { type: [String], required: true },
+    mark_range: { type: MarkRangeSchema, required: true },
+    message_templates: {
+        type: {
+            positive: { type: [String], required: true },
+            negative: { type: [String], required: true }
+        },
+        required: true
+    }
 });
 
 
