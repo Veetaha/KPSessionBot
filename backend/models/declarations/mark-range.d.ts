@@ -16,4 +16,7 @@ export interface MarkRangeMethods {
 }
 
 export interface MarkRangeDoc extends 
-Mongoose.Document, MarkRangeData, MarkRangeMethods {}
+Mongoose.Document, 
+MarkRangeData, 
+MarkRangeMethods 
+{}

@@ -38,7 +38,7 @@
         "morgan": "1.9.1",
         "node-fetch": "latest",
         "node-telegram-bot-api": "^0.30.0",
-        "vee-type-safe": "2.6.8"
+        "vee-type-safe": "2.6.9"
     },
     "devDependencies": {
         "@ef-carbon/tspm": "^2.2.5",
