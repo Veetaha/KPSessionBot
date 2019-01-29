@@ -56,8 +56,8 @@ export interface MessageTemplatesMethods {
      *  to render and all the needed data about the event
      */
     render(
-        this:    Readonly<MessageTemplates>, 
-        options: Readonly<MTRenderOptions>
+        this:    MessageTemplates, 
+        options: MTRenderOptions
     ): string;
 }
 
