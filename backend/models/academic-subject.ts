@@ -34,7 +34,11 @@ const Statics: AcademicSubjectStatics = {
 
 const Methods: AcademicSubjectMethods = {
     randomMarkAndMessage(activityType, student) {
-        const mark = this
+        const activity = this[activityType];
+        const mark = activity.mark_range.random();
+        const  = this[activityType].renderRandomTemplateMessage({
+            mark
+        });
         return {
             mark, 
             message: this.mark_templates[mark > 0 ? 'positive' : 'negative']
