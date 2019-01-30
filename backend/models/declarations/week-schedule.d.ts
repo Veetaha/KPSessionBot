@@ -36,6 +36,43 @@ export interface WeekScheduleMethods {
      *      if a database read/write error occurs.
      */
     setRandomSchedule(this: WeekScheduleDoc): Promise<void>;
+
+    // -------------------------------------------------------------------------
+    /*
+     * Private functions.
+     */
+
+    /**
+     * Core implementation of setRandomSchedule, error checks are supposed to be
+     * already done when invoking it.
+     * @param subjects Array of projected AcademicSubjects retrieved from the db.
+     */
+    _setRandomSchedule(
+        this:     WeekScheduleDoc,
+        subjects: { name: string }[]
+    ): Promise<void>;
+    /**
+     * Returns a number[] of `subjectsAmount` length and its sum in an object.
+     * This array defines the number of times each subject appears in the schedule.
+     * 
+     * @param subjectsAmount Length of times array to generate.
+     * 
+     * @remarks
+     * E.g. if subjects: ['Math', 'English', 'Programming'],
+     * then `subjectsAmount` === subjects.length === 3,
+     * and this function returns
+     * {
+     *     timesSum: 5,
+     *     timesPerWeek: [1, 2, 2]
+     * }
+     * timesPerWeek numbers are genrated randomly according to some restrictions.
+     * Returned data means, that 'Math' appears 1 time in a week schedule and
+     * 'English' and 'Propgramming' appear 2 times in the schedule.
+     */
+    _randomTimesPerWeek(
+        this: WeekScheduleDoc,
+        subjectsAmount: number
+    ): { timesSum: number, timesPerWeek: number[]};
 }
 
 export interface WeekScheduleDoc extends 

@@ -30,38 +30,50 @@ const Methods: WeekScheduleMethods = {
         assert(this.subjects[weekDay - 1]);
         return this.subjects[weekDay - 1];
     },
-    async setRandomSchedule() {
-        interface Projection { name: string; }
-        let subjects: Projection[];
+    async setRandomSchedule() {   
         try {
-            subjects = await AcademicSubject      
-                .tryPickRandomDocuments<Projection>(
+            return this._setRandomSchedule(
+                await AcademicSubject.tryPickRandomDocuments<{ name: string; }>(
                     randomSubjectsAmountForTerm(), { name: true }
-                );
+                )
+            );
         } catch (err) {
             throw err instanceof NotEnoughDocumentsError
                     ? new Errors.NotEnoughSubjectsError
                     : err; 
         }
-    
-        let totalPerWeek = 0;
-        const subjectsTimesPerWeek = _.times(subjects.length, () => { 
-            const randomTimes = Const.SubjectTimesPerWeekRange.random();
-            totalPerWeek += randomTimes;
-            return randomTimes;
-        });
-        const randomSubjects = Utils.pickRandomItems(subjects, subjectsTimesPerWeek); 
+    },
+
+    async _setRandomSchedule(subjects) {
+        const { timesSum, timesPerWeek } = this._randomTimesPerWeek(subjects.length);
+
+        const randomSubjects = Utils.pickRandomItems(subjects, timesPerWeek); 
 
         // create a matrix of subjects that go inside a week evenly
-        this.subjects = _.times(6, () => _.times(Math.floor(totalPerWeek / 6), 
+
+        this.subjects = _.times(6, () => _.times(Math.floor(timesSum / 6), 
             () => randomSubjects.next().value.name
         ));
 
         // push remaining 0 - 5 subjects to random days
-        for (const day of new IntegerRange(0, 6).randomUniqueIntegers(totalPerWeek % 6)) {
+        
+        for (const day of new IntegerRange(0, 6).randomUniqueIntegers(timesSum % 6)) {
             this.subjects[day].push(randomSubjects.next().value.name);
         }
         assert(randomSubjects.next().done);
+    },
+
+    _randomTimesPerWeek(subjectsAmount) {
+        let totalEntries = 0;
+        const timesPerWeek = _.times(subjectsAmount, () => { 
+            const randomTimes = Const.SubjectTimesPerWeekRange.random();
+            totalEntries += randomTimes;
+            return randomTimes;
+        });
+        return {
+            timesSum: totalEntries,
+            timesPerWeek
+        };
     }
 };
 
