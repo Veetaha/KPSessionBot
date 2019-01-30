@@ -1,3 +1,5 @@
+import * as Vts from 'vee-type-safe';
+
 export namespace Log {
     function currentTime() {
         return new Date().toUTCString();
@@ -25,6 +27,13 @@ export function assertFalsy(falsy: unknown) {
     if (falsy) {
         Log.error(falsy);
         shutdown(`assertion failure`);
+    }
+}
+
+export function assertMatches(suspect: unknown, typeDescr: Vts.TypeDescription) {
+    const mismatch = Vts.mismatch(suspect, typeDescr);
+    if (mismatch) {
+        shutdown(mismatch.toErrorString());
     }
 }
 

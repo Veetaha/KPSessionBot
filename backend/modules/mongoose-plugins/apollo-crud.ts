@@ -1,5 +1,5 @@
 import * as Mongoose from 'mongoose';
-import * as AplErr from '@modules/error/apollo';
+import * as AplErr from '@modules/error/mongoose-plugins';
 import * as Vts from 'vee-type-safe';
 import { ObjectId } from '@modules/interfaces';
 

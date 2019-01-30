@@ -1,4 +1,8 @@
-export const MaxSubjectTimesPerWeek = 2; // defines the maximum times subject may appear in a week schedule
+import { IntegerRange } from '@modules/integer-range';
+
+// defines the maximum times subject may appear in a week schedule
+export const SubjectTimesPerWeekRange = new IntegerRange(1, 2); 
+
 export const MinViableMark          = 60;
 export const HolidaysDuration       = '1 week';
 export const StudnigTermDuration    = '6 weeks';

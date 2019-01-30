@@ -1,8 +1,9 @@
-import * as Mongoose  from 'mongoose';
-import Paginate       from 'mongoose-paginate';
-import * as Utils     from '@modules/utils';
-import { CrudPlugin } from '@modules/mongoose-plugins/apollo-crud';
-import { assert     } from '@modules/debug';
+import * as Mongoose        from 'mongoose';
+import * as Utils           from '@modules/utils';
+import Paginate             from 'mongoose-paginate';
+import { CrudPlugin       } from '@modules/mongoose-plugins/apollo-crud';
+import { PickRandomPlugin } from '@modules/mongoose-plugins/pick-random';
+import { assert } from '@modules/debug';
 
 import { Schema as AcademicActivitySchema } from '@models/academic-activity';
 import { 
@@ -11,6 +12,7 @@ import {
     AcademicSubjectModel,
     AcademicSubjectDoc
 } from        '@models/declarations/academic-subject';
+
 export * from '@models/declarations/academic-subject';
 
 export const Schema = new Mongoose.Schema({
@@ -55,6 +57,7 @@ Schema.methods = Methods;
 
 // beware that plugins must come after assigning methods and statics to Schema
 Schema.plugin(CrudPlugin);
+Schema.plugin(PickRandomPlugin);
 Schema.plugin(Paginate);
 
 export const AcademicSubject = Mongoose.model<AcademicSubjectDoc, AcademicSubjectModel>(

@@ -4,7 +4,8 @@ import {
     AcademicActivityDoc, 
     AcademicActivityData 
 } from '@models/academic-activity';
-import { Student } from '@models/student'
+import { Student          } from '@models/student';
+import { PickRandomPluginStatics } from '@modules/mongoose-plugins/pick-random';
 
 export interface AcademicSubjectData {
     name:     string;      // globally unique 
@@ -42,9 +43,10 @@ export interface AcademicSubjectMethods {
 export interface AcademicSubjectStatics {    
     /**
      *  Tries to retrieve AcademicSubjectDoc from db by `name` field.
-     *  Rejects Promise with ApolloError if no such AcademicSubject was found.
      *
      * @param name Name of AcademicSubjectDoc to search for.
+     * @throws ApolloError
+     *         if no such AcademicSubjectDoc was found.
      */
     tryFindByName(
         this: AcademicSubjectModel,
@@ -60,5 +62,6 @@ AcademicSubjectMethods
 export interface AcademicSubjectModel extends 
 Mongoose.PaginateModel<AcademicSubjectDoc>,  
 CrudPluginStatics<AcademicSubjectDoc>,
+PickRandomPluginStatics<AcademicSubjectData, AcademicSubjectDoc>,
 AcademicSubjectStatics
 {}

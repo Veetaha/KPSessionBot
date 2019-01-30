@@ -1,4 +1,4 @@
-import * as Apollo from 'apollo-server-express';
+import { makeErrorSubclass } from '@modules/error/error-factory';
 
 /*
     UserNotEnrolledError     = 'UserNotEnrolledError',
@@ -9,32 +9,14 @@ import * as Apollo from 'apollo-server-express';
     EmptyRating              = 'EmptyRating',
 */
 
-export const NoScheduleForSundayError = makeErrorClass(
+export const NoScheduleForSundayError = makeErrorSubclass(
     'no schedule exists for Sunday'
 );
-export const NoScheduleIsSetError = makeErrorClass(
+export const NoScheduleIsSetError = makeErrorSubclass(
     'no schedule is set for this week'
 );
 
-export const NotEnoughSubjectsForScheduleError = makeErrorClass(
+export const NotEnoughSubjectsError = makeErrorSubclass(
     'there are not enough subjects ' +
-    'registered in the database '    +
-    'to make a week schedule'
+    'registered in the database'
 );
-
-
-
-/**
- * Error class factory, creates an error class that instantiates an error
- * with the given message by default.
- * 
- * @param defaultErrorMessage Message that is stored in `Error.message` property
- *                            by default. 
- */
-export function makeErrorClass(defaultErrorMessage: string) {
-    return class extends Apollo.ValidationError {
-        constructor(errorMessage = defaultErrorMessage) {
-            super(errorMessage);
-        }
-    };
-}
