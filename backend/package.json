@@ -20,6 +20,7 @@
         "@types/node-telegram-bot-api": "^0.30.4",
         "apollo-server-express": "^2.2.2",
         "body-parser": "^1.18.3",
+        "escape-string-regexp": "^1.0.5",
         "express": "4.16.4",
         "generate-rsa-keypair": "^0.1.2",
         "graphql": "^14.0.2",
@@ -36,13 +37,14 @@
         "morgan": "1.9.1",
         "node-fetch": "latest",
         "node-telegram-bot-api": "^0.30.0",
-        "vee-type-safe": "2.6.7"
+        "vee-type-safe": "2.6.9"
     },
     "devDependencies": {
         "@ef-carbon/tspm": "^2.2.5",
         "@types/body-parser": "^1.17.0",
         "@types/chai": "latest",
         "@types/dotenv": "6.1.0",
+        "@types/escape-string-regexp": "^1.0.0",
         "@types/express": "4.16.0",
         "@types/graphql": "^14.0.5",
         "@types/jsonwebtoken": "^8.3.0",

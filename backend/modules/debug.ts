@@ -14,3 +14,23 @@ export namespace Log {
         console.warn(`${currentTime()}| Warning: ${message}`);
     }
 }
+
+export function shutdown(reason = 'undefined behaviour'): never {
+    debugger;
+    Log.error(new Error(reason));
+    return process.exit(1);
+}
+
+export function assertFalsy(falsy: unknown) {
+    if (falsy) {
+        Log.error(falsy);
+        shutdown(`assertion failure`);
+    }
+}
+
+export function assert(truthy: unknown) {
+    if (!truthy) {
+        Log.error(truthy);
+        shutdown(`assertion failure`);
+    }
+}
