@@ -3,7 +3,7 @@ import * as Utils           from '@modules/utils';
 import Paginate             from 'mongoose-paginate';
 import { CrudPlugin       } from '@modules/mongoose-plugins/apollo-crud';
 import { PickRandomPlugin } from '@modules/mongoose-plugins/pick-random';
-import { assert } from '@modules/debug';
+import { assert           } from '@modules/debug';
 
 import { Schema as AcademicActivitySchema } from '@models/academic-activity';
 import { 
@@ -12,7 +12,6 @@ import {
     AcademicSubjectModel,
     AcademicSubjectDoc
 } from        '@models/declarations/academic-subject';
-
 export * from '@models/declarations/academic-subject';
 
 export const Schema = new Mongoose.Schema({
