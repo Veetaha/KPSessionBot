@@ -6,10 +6,10 @@ before_script:
   - cd ./backend && npm run bootstrap
 
 script:
-  - cd ./backend && npm run test
+  - npm run test
 
 after_success:
-  - cd ./backend && npm run docs
+  - npm run docs
 
 deploy:
   - provider: pages
