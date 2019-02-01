@@ -16,5 +16,3 @@ deploy:
     skip_cleanup: true
     local_dir: backend/docs/
     github_token: $GITHUB_TOKEN
-    on:
-      tags: true
