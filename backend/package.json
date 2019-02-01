@@ -13,17 +13,15 @@
     },
     "scripts": {
         "build": "tsc && ./node_modules/.bin/ef-tspm",
-
-        "build-test":  "npm run build && npm test",
+        "build-test": "npm run build && npm test",
         "build-start": "npm run build && npm start",
-        
         "start": "node  build/app.js",
-        "test":  "mocha build/tests/run-all.js",
-        "docs":  "typedoc --options typedoc.json models/declarations modules",
-
+        "test": "mocha build/tests/run-all.js",
+        "docs": "typedoc --options typedoc.json models/declarations modules",
         "bootstrap": "cd scripts && sh bootstrap.sh"
     },
     "dependencies": {
+        "node": "11.9.0",
         "apollo-server-express": "^2.2.2",
         "body-parser": "^1.18.3",
         "colors": "^1.3.3",
@@ -61,7 +59,7 @@
         "@types/mongoose": "5.3.7",
         "@types/mongoose-paginate": "^5.0.6",
         "@types/morgan": "1.7.35",
-        "@types/node": "latest",
+        "@types/node": "10.12.21",
         "@types/node-fetch": "latest",
         "@types/node-telegram-bot-api": "^0.30.4",
         "chai": "latest",
