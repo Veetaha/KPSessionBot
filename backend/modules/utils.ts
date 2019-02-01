@@ -3,7 +3,7 @@ import * as MathJS from 'mathjs';
 import * as Vts    from 'vee-type-safe';
 import * as Utils  from '@modules/utils';
 import { IntegerRange  } from '@modules/integer-range';
-import { assertMatches } from '@modules/debug';
+import { assert        } from '@modules/debug';
 
 /**
  * Returns a random item from the given array. 
@@ -54,7 +54,7 @@ export function swapItems<T>(arr: T[], i: number, j: number) {
  * 
  */
 export function * pickRandomItems<T>(arr: T[], times: number[]) {
-    assertMatches(times, [Vts.isPositiveInteger]);
+    assert.matches(times, [Vts.isPositiveInteger]);
     let edgeIndex = 0;
     while (edgeIndex < arr.length) {
         const randomIndex = MathJS.randomInt(edgeIndex, arr.length);

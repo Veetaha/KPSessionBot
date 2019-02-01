@@ -1,8 +1,8 @@
 import * as Mongoose     from 'mongoose';
 import * as Vts          from 'vee-type-safe';
 
-import { Maybe         } from '@modules/interfaces';       
-import { assertMatches } from '@modules/debug';
+import { Maybe  } from '@modules/interfaces';       
+import { assert } from '@modules/debug';
 
 import { NotEnoughDocumentsError } from '@modules/error/mongoose-plugins';
 export { NotEnoughDocumentsError } from '@modules/error/mongoose-plugins';
@@ -38,7 +38,7 @@ export function PickRandomPlugin<
 >(schema: Mongoose.Schema) {
     const pluginStatics: PickRandomPluginStatics<TDocData, TDoc> = {
         async tryPickRandomDocuments(docsAmount, projection) {
-            assertMatches(docsAmount, Vts.isPositiveInteger);
+            assert.matches(docsAmount, Vts.isPositiveInteger);
             
             const actualAmount = await this.estimatedDocumentCount().exec();
 
