@@ -1,0 +1,18 @@
+language: nodejs
+
+before_script:
+  - cd ./backend && npm run bootstrap
+
+script:
+  - cd ./backend && npm run test
+
+after_success:
+  - cd ./backend && npm run docs
+
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    local_dir: backend/docs/
+    github_token: $GITHUB_TOKEN
+    on:
+      tags: true
