@@ -54,7 +54,7 @@ export namespace Log {
 }
 
 /**
- * Aborts current program execution workflow after involing `error(payload, description)`.
+ * Aborts current program execution workflow after invoking `error(payload, description)`.
  * 
  * @param payload       `Error` or vanilla object, which state needs to be logged.
  * @param description   Additional info message to be logged before `payload`.
