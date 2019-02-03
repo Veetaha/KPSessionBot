@@ -6,17 +6,17 @@ import {
 export * from '@models/declarations/group';
 
 export const Schema = new Mongoose.Schema({
-    name_grop:           { type: String,   required: true },
-    group_id:            { type: Number,   required: true },
-    num_of_participants: { type: Number,   required: true },
-    date_of_created:     { type: Date,     required: true },
-    term:                { type: Number,   required: true },
-    exams:               { type: ObjectId, required: true },
-    week_schedule:       { type: ObjectId, required: true },
-    credits:             { type: [String], required: true },
-    credits_start_date:  { type: Date,     required: true },
-    studing_start_date:  { type: Date,     required: true },
-    members:             { type: [Number], required: true }
+    name_grop:           { type: String,   required: true    },
+    group_id:            { type: Number,   required: true    },
+    num_of_participants: { type: Number,   default: 0        },
+    date_of_created:     { type: Date,     default: Date.now },
+    // term:                { type: Number,   required: true },
+    exams:               { type: ObjectId, required: false   },
+    week_schedule:       { type: ObjectId, required: false   },
+    credits:             { type: [String], default: []       },
+    credits_start_date:  { type: Date,     default: Date.now },
+    studing_start_date:  { type: Date,     default: Date.now },
+    members:             { type: [Number], default: []       }
 });
 
 const Methods: GroupMethods = {
