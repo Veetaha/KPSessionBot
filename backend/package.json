@@ -17,7 +17,7 @@
         "build-start": "npm run build && npm start",
         "start": "node  build/app.js",
         "test": "mocha build/tests/run-all.js",
-        "docs": "typedoc --options typedoc.json models/declarations modules",
+        "docs": "typedoc --options typedoc.json models/declarations modules && touch docs/.nojekyll",
         "bootstrap": "cd scripts && sh bootstrap.sh"
     },
     "dependencies": {
