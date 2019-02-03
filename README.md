@@ -1,7 +1,7 @@
 # KPSessionBot
 [![Build Status](https://travis-ci.org/Veetaha/KPSessionBot.svg?branch=master)](https://travis-ci.org/Veetaha/KPSessionBot)
 
-<img src="assets/images/logo.JPEG" width="500px">
+<img src="assets/images/logo.JPEG">
 
 Feel free to contribute.
 
