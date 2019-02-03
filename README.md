@@ -7,4 +7,4 @@ Feel free to contribute.
 
 [Architecture design](https://docs.google.com/document/d/1YVb8NOd-jz8N__mbREepm4Akqark6K0S2IFK0QeeSAE/view?usp=sharing)
 
-[Api documentation (TypeDoc)](https://veetaha.github.io/KPSessionBot)
+[API documentation (TypeDoc)](https://veetaha.github.io/KPSessionBot)
