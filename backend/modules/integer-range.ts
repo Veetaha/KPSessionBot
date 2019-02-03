@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import * as MathJS from 'mathjs';
 import * as Utils  from '@modules/utils';
-import _ from 'lodash';
+import { assert } from '@modules/debug';
 
 /**
  * Represents a range of integers [min, max), 
@@ -18,22 +19,41 @@ export class IntegerRange {
     }
 
     /**
-     * Creates an instanse of IntegerRange, rounds min and max values if those
+     * Represents minimum range bound (inclusive)
+     */
+    public readonly min: number;
+    /**
+     * Represents maximum range bound (exclusive)
+     */
+    public readonly max: number;
+
+    public static readonly empty = new IntegerRange(0, 0);
+
+    /**
+     * Creates an instance of `IntegerRange`, rounds min and max values if those
      * have decimal parts and swaps them if min > max.
      * 
      * @param min minimum range bound (inclusive)
      * @param max maximim range bound (exclusive)
      */
-    constructor(
-        public readonly min: number,
-        public readonly max: number,
-    ) {
-        min = Math.round(min);
-        max = Math.round(max);
+    constructor(min: number, max: number) {
+        assert.falsy(Number.isNaN(min));
+        assert.falsy(Number.isNaN(max));
         if (min > max) {
-            this.min = max;
-            this.max = min;
+            this.min = Math.round(max);
+            this.max = Math.round(min);
+        } else {
+            this.min = Math.round(min);
+            this.max = Math.round(max);
         }
+    }
+
+    /**
+     * Retuns true if suspect is integer and it goes inside this `IntegerRange`.
+     * @param suspect Value to test wheter it is inside this `IntegerRange`
+     */
+    includes(suspect: number) {
+        return Number.isInteger(suspect) && suspect >= this.min && suspect < this.max;
     }
 
     /**

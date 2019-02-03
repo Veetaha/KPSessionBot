@@ -1,10 +1,8 @@
 import * as Mongoose from 'mongoose';
 import { CrudPluginStatics } from '@modules/mongoose-plugins/apollo-crud';
 import { 
-    AcademicActivityDoc, 
-    AcademicActivityData 
+    AcademicActivityDoc
 } from '@models/academic-activity';
-import { Student                 } from '@models/student';
 import { PickRandomPluginStatics } from '@modules/mongoose-plugins/pick-random';
 
 
