@@ -1,5 +1,5 @@
 # KPsessionBot
-[![Build Status](https://travis-ci.org/Veetaha/KPSessionBot.svg?branch=master)](https://travis-ci.org/Veetaha/kp-session-bot)
+[![Build Status](https://travis-ci.org/Veetaha/kp-session-bot.svg?branch=master)](https://travis-ci.org/Veetaha/kp-session-bot)
 
 <img src="assets/images/logo.JPEG">
 
